@@ -25,21 +25,28 @@
 @page { size: 1189mm 841mm; margin: 0; }
 
 html, body {
+  height: 100%;
   font-family: 'Manrope', sans-serif;
   font-weight: 500;
   color: var(--cyprus);
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
-  background: #1c1c1c;
-  overflow-x: hidden;
+  background: #f4f0e6;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* On screen: the poster is authored at true print size (1189mm) and JS
-   zooms it to fit the viewport width. In print, the zoom is reset so the
-   physical page prints at true size. */
-.page-outer { width: 1189mm; height: 841mm; transform-origin: top left; }
+   zooms it to fit the viewport (containing both width and height). In
+   print, the zoom is reset so the physical page prints at true size. */
+.page-outer { width: 1189mm; height: 841mm; transform-origin: top left; flex-shrink: 0; }
 @media print {
-  html, body { background: none; }
+  html, body { background: none; display: block; }
   .page-outer { zoom: 1 !important; }
 }
 
@@ -356,13 +363,16 @@ a { color: inherit; text-decoration: underline; text-decoration-color: currentCo
 <script>
 (function () {
   var outer = document.querySelector('.page-outer');
-  var baseWidth = null;
+  var baseWidth = null, baseHeight = null;
   function fit() {
     if (baseWidth === null) {
       outer.style.zoom = 1;
-      baseWidth = outer.getBoundingClientRect().width;
+      var rect = outer.getBoundingClientRect();
+      baseWidth = rect.width;
+      baseHeight = rect.height;
     }
-    outer.style.zoom = window.innerWidth / baseWidth;
+    var scale = Math.min(window.innerWidth / baseWidth, window.innerHeight / baseHeight);
+    outer.style.zoom = scale;
   }
   window.addEventListener('resize', fit);
   fit();
