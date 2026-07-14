@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FTW Global Field Boundary Map — ESIP Poster</title>
+<style>
+@font-face { font-family: 'Sora'; src: url('fonts/sora-latin-600-normal.woff2') format('woff2'); font-weight: 600; }
+@font-face { font-family: 'Sora'; src: url('fonts/sora-latin-700-normal.woff2') format('woff2'); font-weight: 700; }
+@font-face { font-family: 'Manrope'; src: url('fonts/manrope-latin-500-normal.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'Manrope'; src: url('fonts/manrope-latin-600-normal.woff2') format('woff2'); font-weight: 600; }
+
+:root {
+  --cyprus: #004747;
+  --meadow: #22A070;
+  --deyork: #7EC185;
+  --yellowgreen: #C0D85B;
+  --shadow: #86775B;
+  --orange: #FF7F41;
+  --powder: #B5E1E6;
+  --white: #FFFFFF;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+@page { size: 1189mm 841mm; margin: 0; }
+
+html, body {
+  width: 1189mm;
+  height: 841mm;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  color: var(--cyprus);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.sora { font-family: 'Sora', sans-serif; font-weight: 600; }
+.sora-bold { font-family: 'Sora', sans-serif; font-weight: 700; }
+
+/* ============================ PAGE GRID ============================ */
+.page {
+  width: 1189mm;
+  height: 841mm;
+  display: grid;
+  grid-template-rows: 84mm 34mm 723mm;
+  grid-template-columns: 100%;
+}
+
+/* ---- top band ---- */
+.topband {
+  position: relative;
+  background: var(--cyprus);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  padding: 11mm 20mm;
+  gap: 22mm;
+}
+.topband::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url('assets/tile-tonal-01.png');
+  background-size: 200mm auto;
+  background-repeat: repeat;
+  opacity: 0.45;
+}
+.topband > * { position: relative; z-index: 1; }
+.logo-lockup img { height: 62mm; display: block; }
+.title-block { display: flex; flex-direction: column; gap: 3mm; padding-top: 3mm; flex: 1; min-width: 0; }
+.title-block h1 { font-size: 60pt; line-height: 1.08; color: var(--white); font-weight: 700; }
+.title-block h1 .accent { color: var(--yellowgreen); }
+.byline-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 20mm; }
+.byline { font-size: 23pt; line-height: 1.35; color: var(--powder); flex: 1; }
+.byline b { color: var(--white); font-weight: 600; }
+.event-line { font-size: 17pt; color: var(--powder); white-space: nowrap; padding-top: 1mm; }
+.stat-line { font-size: 20pt; color: var(--deyork); }
+
+/* ---- partner strip ---- */
+.partnerstrip {
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  padding: 0 20mm;
+}
+.partner-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5mm; }
+.partner-group .label { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 13pt; letter-spacing: 0.06em; color: var(--shadow); text-transform: uppercase; }
+.partner-group .logos { display: flex; align-items: center; gap: 14mm; height: 15mm; }
+.partner-group .logos img { height: 100%; max-height: 13mm; width: auto; object-fit: contain; }
+
+/* ---- main row ---- */
+.mainrow { display: grid; grid-template-columns: 246mm 665mm 246mm; height: 100%; overflow: hidden; }
+
+/* rails: real type hierarchy -- Sora lead (bold, ink) vs Manrope body (smaller, muted) */
+.rail { padding: 12mm 18mm; display: flex; flex-direction: column; }
+.rail h2 {
+  font-family: 'Sora', sans-serif; font-weight: 700; font-size: 17pt; letter-spacing: 0.05em;
+  text-transform: uppercase; color: var(--meadow); margin-bottom: 9mm;
+  padding-bottom: 3mm; border-bottom: 0.4mm solid var(--meadow);
+}
+.rail .item { margin-bottom: 9mm; }
+.rail .item .lead {
+  display: block; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 26pt;
+  color: var(--cyprus); line-height: 1.2; margin-bottom: 2mm;
+}
+.rail .item .body { display: block; font-size: 22pt; color: var(--shadow); line-height: 1.35; }
+.rail .step { display: flex; gap: 6mm; align-items: baseline; margin-bottom: 10mm; }
+.rail .step .num { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 44pt; color: var(--meadow); flex-shrink: 0; width: 28mm; line-height: 1; }
+.rail .note { font-size: 18pt; font-style: italic; color: var(--shadow); line-height: 1.3; margin-top: -2mm; margin-bottom: 0; }
+.rail .section { margin-bottom: 11mm; }
+.rail .section:last-child { margin-bottom: 0; }
+
+.map-figure { margin: 2mm 0 3mm; }
+.map-figure img { width: 100%; display: block; }
+.map-figure .cap { font-size: 18pt; color: var(--shadow); line-height: 1.3; margin-top: 3mm; }
+.blurb { font-size: 22pt; color: var(--cyprus); line-height: 1.4; }
+.blurb b { color: var(--cyprus); font-weight: 600; }
+
+/* right rail */
+.rail-right .chart-figure img { width: 100%; display: block; }
+.rail-right .chart-cap { font-size: 18pt; color: var(--shadow); line-height: 1.35; margin: 4mm 0 9mm; }
+.rail-right .f1row { display: flex; border-top: 0.25mm solid rgba(134,119,91,0.3); padding-top: 8mm; margin-bottom: 6mm; }
+.rail-right .f1row .f1 { flex: 1; text-align: center; }
+.rail-right .f1row .f1 .val { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 30pt; color: var(--cyprus); }
+.rail-right .f1row .f1 .lbl { font-size: 17pt; color: var(--shadow); margin-top: 2mm; }
+.rail-right .f1cap { font-size: 17pt; color: var(--shadow); line-height: 1.35; }
+.rail-right .item.warn .lead { color: var(--orange); }
+.rail-right .item.warn .body { color: var(--orange); opacity: 0.85; }
+.rail-right .contact .person { margin-bottom: 6mm; }
+.rail-right .contact .person .lead,
+.rail-right .contact .person .body { display: block; }
+.rail-right .contact .person .lead { font-size: 21pt; margin-bottom: 1mm; }
+.rail-right .contact .person .body { font-size: 18pt; color: var(--shadow); }
+.demo-line { border-top: 0.4mm solid var(--orange); padding-top: 7mm; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 21pt; color: var(--orange); margin-top: auto; }
+
+/* center panel */
+.center { background: var(--cyprus); display: flex; flex-direction: column; align-items: center; padding: 15mm 32mm 0; overflow: hidden; }
+.takeaway { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 52pt; color: var(--white); text-align: center; margin-bottom: 12mm; }
+.takeaway .accent { color: var(--yellowgreen); }
+
+.hero-wrap { width: 100%; max-width: 625mm; }
+.hero-img-frame { width: 100%; height: 294.8mm; overflow: hidden; border: 0.5mm solid var(--deyork); }
+.hero-img-frame img { width: 100%; display: block; }
+.hero-caption { font-size: 18pt; color: var(--powder); margin: 5mm 0 10mm; }
+
+.statrow { width: 100%; max-width: 625mm; display: flex; border-top: 0.3mm solid rgba(181,225,230,0.5); border-bottom: 0.3mm solid rgba(181,225,230,0.5); padding: 7mm 0; margin-bottom: 12mm; }
+.statrow .stat { flex: 1; text-align: center; border-left: 0.25mm solid rgba(181,225,230,0.3); }
+.statrow .stat:first-child { border-left: none; }
+.statrow .stat .val { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 32pt; color: var(--yellowgreen); }
+.statrow .stat .lbl { font-size: 17.5pt; color: var(--white); margin-top: 2mm; }
+
+.insets { width: 100%; max-width: 625mm; display: flex; gap: 6mm; margin-bottom: 6mm; }
+.inset { flex: 1; min-width: 0; }
+.inset .frame { width: 100%; height: 110mm; overflow: hidden; position: relative; }
+.inset .frame img { width: 100%; height: 100%; object-fit: cover; }
+.inset .frame .badge {
+  position: absolute; top: 3mm; left: 3mm; width: 12mm; height: 12mm; border-radius: 50%;
+  background: var(--white); color: var(--cyprus); font-family: 'Sora', sans-serif; font-weight: 700;
+  font-size: 13pt; display: flex; align-items: center; justify-content: center;
+}
+.inset .cap { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 17pt; color: var(--yellowgreen); margin-top: 3mm; }
+.insets-caption { width: 100%; max-width: 625mm; font-size: 18pt; color: var(--powder); margin-bottom: 8mm; }
+
+.qrrow { width: 100%; max-width: 625mm; display: flex; gap: 40mm; border-top: 0.3mm solid rgba(181,225,230,0.4); padding-top: 10mm; }
+.qrblock { flex: 1; display: flex; gap: 8mm; }
+.qrblock img.qr { width: 56mm; height: 56mm; flex-shrink: 0; }
+.qrblock .qrtext { display: flex; flex-direction: column; gap: 3mm; }
+.qrblock .qrtext h3 { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 21pt; color: var(--yellowgreen); }
+.qrblock .qrtext p { font-size: 18pt; color: var(--white); line-height: 1.3; }
+.qrblock .qrtext .url { font-size: 17pt; color: var(--deyork); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- TOP BAND -->
+  <div class="topband">
+    <div class="logo-lockup"><img src="assets/logo-white.png" alt="Fields of The World"></div>
+    <div class="title-block">
+      <h1>The First Global Map of <span class="accent">Agricultural Field Boundaries</span></h1>
+      <div class="byline-row">
+        <div class="byline">
+          Caleb Robinson &middot; Gedeon Muhawenayo &middot; Subash Khanal &middot; Zhanpei Fang &middot; <b>Isaac Corley</b> &middot; Ana M. T&aacute;rano &middot; Lyndon Estes &middot; Jennifer Marcus &middot; Nathan Jacobs &middot; Hannah Kerner &middot; Inbal Becker-Reshef &middot; Juan M. Lavista Ferres
+        </div>
+        <div class="event-line">ESIP July 2026 Meeting Research Showcase &middot; Austin, TX &middot; July 29, 2026</div>
+      </div>
+      <div class="stat-line">10&nbsp;m resolution &middot; every country on Earth &middot; 2024 &amp; 2025 &middot; fully open, CC-BY</div>
+    </div>
+  </div>
+
+  <!-- PARTNER STRIP -->
+  <div class="partnerstrip">
+    <div class="partner-group">
+      <div class="label">Sponsored by</div>
+      <div class="logos"><img src="assets/taylor-geospatial.png"></div>
+    </div>
+    <div class="partner-group">
+      <div class="label">Co-developed by</div>
+      <div class="logos"><img src="assets/microsoft-ai-for-good.png"></div>
+    </div>
+    <div class="partner-group">
+      <div class="label">Academic partners</div>
+      <div class="logos">
+        <img src="assets/asu.png">
+        <img src="assets/washu.png">
+        <img src="assets/clark.png">
+      </div>
+    </div>
+    <div class="partner-group">
+      <div class="label">Infrastructure &amp; support</div>
+      <div class="logos">
+        <img src="assets/wherobots.png">
+        <img src="assets/source-coop.png">
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN ROW -->
+  <div class="mainrow">
+
+    <!-- LEFT RAIL -->
+    <div class="rail rail-left">
+      <div class="section">
+        <h2>Why it matters</h2>
+        <div class="item"><span class="lead">Food security</span><span class="body">Field-level crop monitoring headed to analysts at NASA Harvest and UN FAO.</span></div>
+        <div class="item"><span class="lead">Carbon &amp; MRV</span><span class="body">Measuring conservation and climate programs at the scale farms actually operate.</span></div>
+        <div class="item"><span class="lead">Precision agriculture</span><span class="body">Analytics and products built per field, not per pixel.</span></div>
+        <div class="item" style="margin-bottom:0;"><span class="lead">Policy &amp; compliance</span><span class="body">Spatially explicit evidence for regulations like the EU Deforestation Regulation.</span></div>
+      </div>
+
+      <div class="section">
+        <h2>How we built it</h2>
+        <div class="step"><div class="num">1</div><div class="item" style="margin-bottom:0;"><span class="lead">Cloud-free Sentinel-2 mosaics</span><span class="body">Planting and harvest season composites over all land on Earth.</span></div></div>
+        <div class="step"><div class="num">2</div><div class="item" style="margin-bottom:0;"><span class="lead">The PRUE segmentation model</span><span class="body">Trained on the open FTW benchmark: 1.6&nbsp;M parcels across 24 countries.</span></div></div>
+        <div class="step"><div class="num">3</div><div class="item" style="margin-bottom:0;"><span class="lead">Planetary-scale inference</span><span class="body">256 GPUs on Wherobots RasterFlow &rarr; 3.17&nbsp;B field polygons.</span></div></div>
+        <div class="note">Each polygon is what the satellite sees: a remote-sensing field unit, which may merge or split legal parcels.</div>
+      </div>
+
+      <div class="section">
+        <h2>Where the fields are</h2>
+        <div class="map-figure">
+          <img src="assets/world_choropleth.png">
+          <div class="cap">Model-predicted field density, aggregated to 500&nbsp;m &mdash; every green pixel is mapped cropland.</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Built in the open</h2>
+        <div class="blurb">Benchmark dataset, baseline models, an Explorer app, and an open API &mdash; all CC-BY. Community calls every other Thursday at <b>fieldsofthe.world</b>.</div>
+      </div>
+    </div>
+
+    <!-- CENTER PANEL -->
+    <div class="center">
+      <div class="takeaway">Every field on Earth, <span class="accent">on one open map.</span></div>
+
+      <div class="hero-wrap">
+        <div class="hero-img-frame"><img src="assets/ftw-global-map.png"></div>
+        <div class="hero-caption">The FTW Explorer &mdash; density of the 3.17&nbsp;B mapped fields (purple &rarr; sparse, green &rarr; dense) over Sentinel-2 cloudless imagery.</div>
+      </div>
+
+      <div class="statrow">
+        <div class="stat"><div class="val">3.17 B</div><div class="lbl">field boundaries</div></div>
+        <div class="stat"><div class="val">241</div><div class="lbl">countries &amp; territories</div></div>
+        <div class="stat"><div class="val">10 m</div><div class="lbl">Sentinel-2 resolution</div></div>
+        <div class="stat"><div class="val">2024 + 25</div><div class="lbl">two annual snapshots</div></div>
+      </div>
+
+      <div class="insets">
+        <div class="inset">
+          <div class="frame"><span class="badge">A</span><img src="assets/inset_iowa.png"></div>
+          <div class="cap">Iowa, USA</div>
+        </div>
+        <div class="inset">
+          <div class="frame"><span class="badge">B</span><img src="assets/inset_beauce.png"></div>
+          <div class="cap">Beauce, France</div>
+        </div>
+        <div class="inset">
+          <div class="frame"><span class="badge">C</span><img src="assets/inset_punjab.png"></div>
+          <div class="cap">Punjab, India</div>
+        </div>
+        <div class="inset">
+          <div class="frame"><span class="badge">D</span><img src="assets/inset_nsw.png"></div>
+          <div class="cap">New South Wales, AUS</div>
+        </div>
+      </div>
+      <div class="insets-caption">One model, every landscape &mdash; from the US corn belt to sub-hectare smallholder plots, each polygon delineated at 10&nbsp;m.</div>
+
+      <div class="qrrow">
+        <div class="qrblock">
+          <img class="qr" src="assets/qr_explorer.png">
+          <div class="qrtext">
+            <h3>Explore it live</h3>
+            <p>Pan the planet, click any field &mdash; right in your browser.</p>
+            <div class="url">fieldsofthe.world</div>
+          </div>
+        </div>
+        <div class="qrblock">
+          <img class="qr" src="assets/qr_data.png">
+          <div class="qrtext">
+            <h3>Get the data</h3>
+            <p>CC-BY GeoParquet, in the fiboa standard.</p>
+            <div class="url">source.coop/ftw/global-data</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT RAIL -->
+    <div class="rail rail-right">
+      <div class="section">
+        <h2>How good is it?</h2>
+        <div class="chart-figure"><img src="assets/recall_per_country.png"></div>
+        <div class="chart-cap">Pixel-level recall of 2025 predictions vs. ground-truth field boundaries, 24 countries. Mean recall <b style="color:var(--cyprus); font-weight:600;">0.852</b>; 14 of 24 exceed 0.90.</div>
+        <div class="f1row">
+          <div class="f1"><div class="val">0.89</div><div class="lbl">Austria (F1)</div></div>
+          <div class="f1"><div class="val">0.88</div><div class="lbl">Latvia (F1)</div></div>
+          <div class="f1"><div class="val">0.74</div><div class="lbl">Finland (F1)</div></div>
+        </div>
+        <div class="f1cap">Full-country F1 vs. complete national parcel registries (LPIS/INVEKOS), pixel level at 10&nbsp;m.</div>
+      </div>
+
+      <div class="section">
+        <h2>Know its limits</h2>
+        <div class="item"><span class="lead">Confidence-scored</span><span class="body">Every 500&nbsp;m cell carries a modeled confidence score (AUC 0.82) &mdash; filter at whatever threshold your use case needs.</span></div>
+        <div class="item"><span class="lead">844&nbsp;M fields by default</span><span class="body">The default filter keeps 844&nbsp;M high-confidence 2025 fields; the full unfiltered 1.55&nbsp;B are also released.</span></div>
+        <div class="item"><span class="lead">Annual crops only</span><span class="body">Orchards, vineyards, and pasture are out of scope; very small smallholder fields can over-fragment.</span></div>
+        <div class="item warn"><span class="lead">Not a cadastral product</span><span class="body">Boundaries follow pixels, not legal parcels or land tenure.</span></div>
+      </div>
+
+      <div class="section">
+        <h2>Contact</h2>
+        <div class="contact">
+          <div class="person"><span class="lead">Isaac Corley</span><span class="body">Taylor Geospatial &mdash; isaac.corley@taylorgeospatial.org</span></div>
+          <div class="person"><span class="lead">Caleb Robinson</span><span class="body">Microsoft AI for Good Lab &mdash; caleb.robinson@microsoft.com</span></div>
+        </div>
+      </div>
+
+      <div class="demo-line">Live demo on my laptop &mdash; come find me at the showcase.</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
