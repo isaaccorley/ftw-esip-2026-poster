@@ -176,6 +176,8 @@ html, body {
 .qrblock .qrtext h3 { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 21pt; color: var(--yellowgreen); }
 .qrblock .qrtext p { font-size: 18pt; color: var(--white); line-height: 1.3; }
 .qrblock .qrtext .url { font-size: 17pt; color: var(--deyork); }
+
+a { color: inherit; text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 3px; }
 </style>
 </head>
 <body>
@@ -230,42 +232,42 @@ html, body {
     <!-- LEFT RAIL -->
     <div class="rail rail-left">
       <div class="section">
-        <h2>Why it matters</h2>
-        <div class="item"><span class="lead">Food security</span><span class="body">Field-level crop monitoring headed to analysts at NASA Harvest and UN FAO.</span></div>
-        <div class="item"><span class="lead">Carbon &amp; MRV</span><span class="body">Measuring conservation and climate programs at the scale farms actually operate.</span></div>
-        <div class="item"><span class="lead">Precision agriculture</span><span class="body">Analytics and products built per field, not per pixel.</span></div>
+        <h2>Motivation</h2>
+        <div class="item"><span class="lead">Food security</span><span class="body">Field-level crop monitoring for analysts at NASA Harvest and UN FAO.</span></div>
+        <div class="item"><span class="lead">Carbon &amp; MRV</span><span class="body">Measures conservation and climate programs at the field scale.</span></div>
+        <div class="item"><span class="lead">Precision agriculture</span><span class="body">Enables analytics and products built at the field level.</span></div>
         <div class="item" style="margin-bottom:0;"><span class="lead">Policy &amp; compliance</span><span class="body">Spatially explicit evidence for regulations like the EU Deforestation Regulation.</span></div>
       </div>
 
       <div class="section">
-        <h2>How we built it</h2>
+        <h2>Method</h2>
         <div class="step"><div class="num">1</div><div class="item" style="margin-bottom:0;"><span class="lead">Cloud-free Sentinel-2 mosaics</span><span class="body">Planting and harvest season composites over all land on Earth.</span></div></div>
         <div class="step"><div class="num">2</div><div class="item" style="margin-bottom:0;"><span class="lead">The PRUE segmentation model</span><span class="body">Trained on the open FTW benchmark: 1.6&nbsp;M parcels across 24 countries.</span></div></div>
         <div class="step"><div class="num">3</div><div class="item" style="margin-bottom:0;"><span class="lead">Planetary-scale inference</span><span class="body">256 GPUs on Wherobots RasterFlow &rarr; 3.17&nbsp;B field polygons.</span></div></div>
-        <div class="note">Each polygon is what the satellite sees: a remote-sensing field unit, which may merge or split legal parcels.</div>
+        <div class="note">Each polygon is a remote-sensing field unit resolved from satellite imagery; it may merge or split legal parcels.</div>
       </div>
 
       <div class="section">
-        <h2>Where the fields are</h2>
+        <h2>Global coverage</h2>
         <div class="map-figure">
           <img src="assets/world_choropleth.png">
-          <div class="cap">Model-predicted field density, aggregated to 500&nbsp;m &mdash; every green pixel is mapped cropland.</div>
+          <div class="cap">Model-predicted field density, aggregated to 500&nbsp;m. Green indicates mapped cropland.</div>
         </div>
       </div>
 
       <div class="section">
-        <h2>Built in the open</h2>
-        <div class="blurb">Benchmark dataset, baseline models, an Explorer app, and an open API &mdash; all CC-BY. Community calls every other Thursday at <b>fieldsofthe.world</b>.</div>
+        <h2>Open ecosystem</h2>
+        <div class="blurb">Benchmark dataset, baseline models, an Explorer app, and an open API, all released CC-BY. Community calls meet every other Thursday at <a href="https://fieldsofthe.world">fieldsofthe.world</a>.</div>
       </div>
     </div>
 
     <!-- CENTER PANEL -->
     <div class="center">
-      <div class="takeaway">Every field on Earth, <span class="accent">on one open map.</span></div>
+      <div class="takeaway">A single model mapped agricultural field boundaries across <span class="accent">every country and territory on Earth.</span></div>
 
       <div class="hero-wrap">
         <div class="hero-img-frame"><img src="assets/ftw-global-map.png"></div>
-        <div class="hero-caption">The FTW Explorer &mdash; density of the 3.17&nbsp;B mapped fields (purple &rarr; sparse, green &rarr; dense) over Sentinel-2 cloudless imagery.</div>
+        <div class="hero-caption">The FTW Explorer: density of the 3.17&nbsp;B mapped fields (purple: sparse, green: dense) over Sentinel-2 cloudless imagery.</div>
       </div>
 
       <div class="statrow">
@@ -293,15 +295,15 @@ html, body {
           <div class="cap">New South Wales, AUS</div>
         </div>
       </div>
-      <div class="insets-caption">One model, every landscape &mdash; from the US corn belt to sub-hectare smallholder plots, each polygon delineated at 10&nbsp;m.</div>
+      <div class="insets-caption">The same model resolves both large mechanized fields and sub-hectare smallholder plots, at native 10&nbsp;m resolution.</div>
 
       <div class="qrrow">
         <div class="qrblock">
           <img class="qr" src="assets/qr_explorer.png">
           <div class="qrtext">
             <h3>Explore it live</h3>
-            <p>Pan the planet, click any field &mdash; right in your browser.</p>
-            <div class="url">fieldsofthe.world</div>
+            <p>Pan the planet and click any field, directly in your browser.</p>
+            <div class="url"><a href="https://fieldsofthe.world">fieldsofthe.world</a></div>
           </div>
         </div>
         <div class="qrblock">
@@ -309,7 +311,7 @@ html, body {
           <div class="qrtext">
             <h3>Get the data</h3>
             <p>CC-BY GeoParquet, in the fiboa standard.</p>
-            <div class="url">source.coop/ftw/global-data</div>
+            <div class="url"><a href="https://source.coop/ftw/global-data">source.coop/ftw/global-data</a></div>
           </div>
         </div>
       </div>
@@ -318,7 +320,7 @@ html, body {
     <!-- RIGHT RAIL -->
     <div class="rail rail-right">
       <div class="section">
-        <h2>How good is it?</h2>
+        <h2>Validation</h2>
         <div class="chart-figure"><img src="assets/recall_per_country.png"></div>
         <div class="chart-cap">Pixel-level recall of 2025 predictions vs. ground-truth field boundaries, 24 countries. Mean recall <b style="color:var(--cyprus); font-weight:600;">0.852</b>; 14 of 24 exceed 0.90.</div>
         <div class="f1row">
@@ -330,22 +332,22 @@ html, body {
       </div>
 
       <div class="section">
-        <h2>Know its limits</h2>
-        <div class="item"><span class="lead">Confidence-scored</span><span class="body">Every 500&nbsp;m cell carries a modeled confidence score (AUC 0.82) &mdash; filter at whatever threshold your use case needs.</span></div>
+        <h2>Limitations</h2>
+        <div class="item"><span class="lead">Confidence-scored</span><span class="body">Every 500&nbsp;m cell carries a modeled confidence score (AUC 0.82). Filter at whatever threshold fits your use case.</span></div>
         <div class="item"><span class="lead">844&nbsp;M fields by default</span><span class="body">The default filter keeps 844&nbsp;M high-confidence 2025 fields; the full unfiltered 1.55&nbsp;B are also released.</span></div>
-        <div class="item"><span class="lead">Annual crops only</span><span class="body">Orchards, vineyards, and pasture are out of scope; very small smallholder fields can over-fragment.</span></div>
+        <div class="item"><span class="lead">Annual crops only</span><span class="body">Orchards, vineyards, and pasture are out of scope. Very small smallholder fields can also over-fragment into clusters of pixel-scale polygons.</span></div>
         <div class="item warn"><span class="lead">Not a cadastral product</span><span class="body">Boundaries follow pixels, not legal parcels or land tenure.</span></div>
       </div>
 
       <div class="section">
         <h2>Contact</h2>
         <div class="contact">
-          <div class="person"><span class="lead">Isaac Corley</span><span class="body">Taylor Geospatial &mdash; isaac.corley@taylorgeospatial.org</span></div>
-          <div class="person"><span class="lead">Caleb Robinson</span><span class="body">Microsoft AI for Good Lab &mdash; caleb.robinson@microsoft.com</span></div>
+          <div class="person"><span class="lead">Isaac Corley</span><span class="body">Taylor Geospatial &mdash; <a href="mailto:isaac.corley@taylorgeospatial.org">isaac.corley@taylorgeospatial.org</a></span></div>
+          <div class="person"><span class="lead">Caleb Robinson</span><span class="body">Microsoft AI for Good Lab &mdash; <a href="mailto:caleb.robinson@microsoft.com">caleb.robinson@microsoft.com</a></span></div>
         </div>
       </div>
 
-      <div class="demo-line">Live demo on my laptop &mdash; come find me at the showcase.</div>
+      <div class="demo-line">Live demo on my laptop. Come find me at the showcase.</div>
     </div>
 
   </div>
