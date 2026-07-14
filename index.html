@@ -10,6 +10,7 @@
 @font-face { font-family: 'Manrope'; src: url('fonts/manrope-latin-600-normal.woff2') format('woff2'); font-weight: 600; }
 
 :root {
+  /* Brand hex, unchanged -- use for fills, borders, icons, and text ON DARK (cyprus) backgrounds only. */
   --cyprus: #004747;
   --meadow: #22A070;
   --deyork: #7EC185;
@@ -18,6 +19,19 @@
   --orange: #FF7F41;
   --powder: #B5E1E6;
   --white: #FFFFFF;
+
+  /* Print-safe derived tones -- darkened variants for text ON LIGHT (white) backgrounds.
+     Raw --shadow/--orange/--meadow read at 2.5-4.4:1 contrast on white, below the ~4.5:1
+     floor for reliable legibility at poster viewing distance and under venue lighting;
+     these hold the same hue family at >=5.5:1. */
+  --text-muted: #5C4E3A;    /* darkened --shadow, for captions/body copy on white */
+  --text-warn: #A8460F;     /* darkened --orange, for the warning callout on white */
+  --heading-accent: #1B7A40; /* darkened --meadow, for section headers/numerals on white */
+
+  /* Chart tiers -- distinct from the text tokens above so a color never carries two
+     meanings; --powder is reserved for dark-bg text, so tier 2 gets its own hue. */
+  --chart-tier2: #3E7E96;   /* mid teal-blue, replaces --powder as a light-bg bar fill */
+  --chart-tier4: #8B4A2E;   /* muted rust, replaces --shadow as a light-bg bar fill */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -100,7 +114,7 @@ body {
   padding: 0 20mm;
 }
 .partner-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6mm; }
-.partner-group .label { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 16pt; letter-spacing: 0.06em; color: var(--shadow); text-transform: uppercase; }
+.partner-group .label { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 16pt; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; }
 .partner-group .logos { display: flex; align-items: center; gap: 16mm; height: 26mm; }
 .partner-group .logos img { height: 100%; max-height: 24mm; width: auto; object-fit: contain; }
 
@@ -111,7 +125,7 @@ body {
 .rail { padding: 12mm 18mm; display: flex; flex-direction: column; }
 .rail h2 {
   font-family: 'Sora', sans-serif; font-weight: 700; font-size: 17pt; letter-spacing: 0.05em;
-  text-transform: uppercase; color: var(--meadow); margin-bottom: 9mm;
+  text-transform: uppercase; color: var(--heading-accent); margin-bottom: 9mm;
   padding-bottom: 3mm; border-bottom: 0.4mm solid var(--meadow);
 }
 .rail .item { margin-bottom: 9mm; }
@@ -119,21 +133,21 @@ body {
   display: block; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 26pt;
   color: var(--cyprus); line-height: 1.2; margin-bottom: 2mm;
 }
-.rail .item .body { display: block; font-size: 22pt; color: var(--shadow); line-height: 1.35; }
+.rail .item .body { display: block; font-size: 22pt; color: var(--text-muted); line-height: 1.35; }
 .rail .step { display: flex; gap: 6mm; align-items: baseline; margin-bottom: 10mm; }
-.rail .step .num { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 44pt; color: var(--meadow); flex-shrink: 0; width: 28mm; line-height: 1; }
-.rail .note { font-size: 18pt; font-style: italic; color: var(--shadow); line-height: 1.3; margin-top: -2mm; margin-bottom: 0; }
+.rail .step .num { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 44pt; color: var(--heading-accent); flex-shrink: 0; width: 28mm; line-height: 1; }
+.rail .note { font-size: 18pt; font-style: italic; color: var(--text-muted); line-height: 1.3; margin-top: -2mm; margin-bottom: 0; }
 .rail .section { margin-bottom: 11mm; }
 .rail .section:last-child { margin-bottom: 0; }
 
 .map-figure { margin: 2mm 0 3mm; }
 .map-figure img { width: 100%; display: block; }
-.map-figure .cap { font-size: 18pt; color: var(--shadow); line-height: 1.3; margin-top: 3mm; }
+.map-figure .cap { font-size: 18pt; color: var(--text-muted); line-height: 1.3; margin-top: 3mm; }
 .blurb { font-size: 22pt; color: var(--cyprus); line-height: 1.4; }
 .blurb b { color: var(--cyprus); font-weight: 600; }
 
 /* right rail */
-.rail-right .chart-cap { font-size: 18pt; color: var(--shadow); line-height: 1.35; margin: 4mm 0 9mm; }
+.rail-right .chart-cap { font-size: 18pt; color: var(--text-muted); line-height: 1.35; margin: 4mm 0 9mm; }
 
 /* validation bar chart -- real markup, not a raster image, so labels stay crisp at any print size */
 .barchart { position: relative; padding-bottom: 16mm; }
@@ -142,18 +156,18 @@ body {
 .bar-track { position: relative; height: 7mm; background: rgba(0,71,71,0.07); }
 .bar-fill { position: absolute; left: 0; top: 0; bottom: 0; }
 .bar-value { font-size: 15pt; color: var(--cyprus); font-variant-numeric: tabular-nums; }
-.mean-line { position: absolute; top: 0; bottom: 16mm; left: var(--mean-left); width: 0; border-left: 0.5mm dashed var(--shadow); }
-.mean-label { position: absolute; bottom: 8mm; left: calc(var(--mean-left) + 3mm); font-size: 14pt; color: var(--shadow); white-space: nowrap; }
+.mean-line { position: absolute; top: 0; bottom: 16mm; left: var(--mean-left); width: 0; border-left: 0.5mm dashed var(--text-muted); }
+.mean-label { position: absolute; bottom: 8mm; left: calc(var(--mean-left) + 3mm); font-size: 14pt; color: var(--text-muted); white-space: nowrap; }
 .axis-row { position: relative; height: 8mm; margin-top: 2mm; }
-.axis-tick { position: absolute; top: 0; transform: translateX(-50%); font-size: 14pt; color: var(--shadow); }
-.axis-title { text-align: center; font-size: 15pt; color: var(--shadow); margin-top: 9mm; }
+.axis-tick { position: absolute; top: 0; transform: translateX(-50%); font-size: 14pt; color: var(--text-muted); }
+.axis-title { text-align: center; font-size: 15pt; color: var(--text-muted); margin-top: 9mm; }
 .rail-right .f1row { display: flex; border-top: 0.25mm solid rgba(134,119,91,0.3); padding-top: 8mm; margin-bottom: 6mm; }
 .rail-right .f1row .f1 { flex: 1; text-align: center; }
 .rail-right .f1row .f1 .val { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 30pt; color: var(--cyprus); }
-.rail-right .f1row .f1 .lbl { font-size: 17pt; color: var(--shadow); margin-top: 2mm; }
-.rail-right .f1cap { font-size: 17pt; color: var(--shadow); line-height: 1.35; }
-.rail-right .item.warn .lead { color: var(--orange); }
-.rail-right .item.warn .body { color: var(--orange); opacity: 0.85; }
+.rail-right .f1row .f1 .lbl { font-size: 17pt; color: var(--text-muted); margin-top: 2mm; }
+.rail-right .f1cap { font-size: 17pt; color: var(--text-muted); line-height: 1.35; }
+.rail-right .item.warn .lead { color: var(--text-warn); }
+.rail-right .item.warn .body { color: var(--text-warn); opacity: 0.9; }
 
 /* center panel */
 .center { background: var(--cyprus); display: flex; flex-direction: column; align-items: center; padding: 15mm 32mm 0; overflow: hidden; }
@@ -351,17 +365,17 @@ a { color: inherit; text-decoration: underline; text-decoration-color: currentCo
         <div class="bar-row"><div class="bar-label">Rwanda</div><div class="bar-track"><div class="bar-fill" style="width:79.38mm; background:var(--meadow);"></div></div><div class="bar-value">0.902</div></div>
         <div class="bar-row"><div class="bar-label">Belgium</div><div class="bar-track"><div class="bar-fill" style="width:79.38mm; background:var(--meadow);"></div></div><div class="bar-value">0.902</div></div>
         <div class="bar-row"><div class="bar-label">Austria</div><div class="bar-track"><div class="bar-fill" style="width:79.20mm; background:var(--meadow);"></div></div><div class="bar-value">0.900</div></div>
-        <div class="bar-row"><div class="bar-label">Latvia</div><div class="bar-track"><div class="bar-fill" style="width:78.76mm; background:var(--powder);"></div></div><div class="bar-value">0.895</div></div>
-        <div class="bar-row"><div class="bar-label">Sweden</div><div class="bar-track"><div class="bar-fill" style="width:75.33mm; background:var(--powder);"></div></div><div class="bar-value">0.856</div></div>
-        <div class="bar-row"><div class="bar-label">Finland</div><div class="bar-track"><div class="bar-fill" style="width:75.24mm; background:var(--powder);"></div></div><div class="bar-value">0.855</div></div>
-        <div class="bar-row"><div class="bar-label">Germany</div><div class="bar-track"><div class="bar-fill" style="width:73.66mm; background:var(--powder);"></div></div><div class="bar-value">0.837</div></div>
-        <div class="bar-row"><div class="bar-label">South Africa</div><div class="bar-track"><div class="bar-fill" style="width:73.22mm; background:var(--powder);"></div></div><div class="bar-value">0.832</div></div>
+        <div class="bar-row"><div class="bar-label">Latvia</div><div class="bar-track"><div class="bar-fill" style="width:78.76mm; background:var(--chart-tier2);"></div></div><div class="bar-value">0.895</div></div>
+        <div class="bar-row"><div class="bar-label">Sweden</div><div class="bar-track"><div class="bar-fill" style="width:75.33mm; background:var(--chart-tier2);"></div></div><div class="bar-value">0.856</div></div>
+        <div class="bar-row"><div class="bar-label">Finland</div><div class="bar-track"><div class="bar-fill" style="width:75.24mm; background:var(--chart-tier2);"></div></div><div class="bar-value">0.855</div></div>
+        <div class="bar-row"><div class="bar-label">Germany</div><div class="bar-track"><div class="bar-fill" style="width:73.66mm; background:var(--chart-tier2);"></div></div><div class="bar-value">0.837</div></div>
+        <div class="bar-row"><div class="bar-label">South Africa</div><div class="bar-track"><div class="bar-fill" style="width:73.22mm; background:var(--chart-tier2);"></div></div><div class="bar-value">0.832</div></div>
         <div class="bar-row"><div class="bar-label">India</div><div class="bar-track"><div class="bar-fill" style="width:69.26mm; background:var(--orange);"></div></div><div class="bar-value">0.787</div></div>
         <div class="bar-row"><div class="bar-label">Slovenia</div><div class="bar-track"><div class="bar-fill" style="width:64.77mm; background:var(--orange);"></div></div><div class="bar-value">0.736</div></div>
         <div class="bar-row"><div class="bar-label">Kenya</div><div class="bar-track"><div class="bar-fill" style="width:62.83mm; background:var(--orange);"></div></div><div class="bar-value">0.714</div></div>
-        <div class="bar-row"><div class="bar-label">Cambodia</div><div class="bar-track"><div class="bar-fill" style="width:61.07mm; background:var(--shadow);"></div></div><div class="bar-value">0.694</div></div>
-        <div class="bar-row"><div class="bar-label">Corsica</div><div class="bar-track"><div class="bar-fill" style="width:50.69mm; background:var(--shadow);"></div></div><div class="bar-value">0.576</div></div>
-        <div class="bar-row"><div class="bar-label">Luxembourg</div><div class="bar-track"><div class="bar-fill" style="width:28.78mm; background:var(--shadow);"></div></div><div class="bar-value">0.327</div></div>
+        <div class="bar-row"><div class="bar-label">Cambodia</div><div class="bar-track"><div class="bar-fill" style="width:61.07mm; background:var(--chart-tier4);"></div></div><div class="bar-value">0.694</div></div>
+        <div class="bar-row"><div class="bar-label">Corsica</div><div class="bar-track"><div class="bar-fill" style="width:50.69mm; background:var(--chart-tier4);"></div></div><div class="bar-value">0.576</div></div>
+        <div class="bar-row"><div class="bar-label">Luxembourg</div><div class="bar-track"><div class="bar-fill" style="width:28.78mm; background:var(--chart-tier4);"></div></div><div class="bar-value">0.327</div></div>
           <div class="mean-line"></div>
           <div class="mean-label">Mean = 0.838</div>
           <div class="axis-row">
