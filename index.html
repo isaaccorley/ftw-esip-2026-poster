@@ -25,13 +25,22 @@
 @page { size: 1189mm 841mm; margin: 0; }
 
 html, body {
-  width: 1189mm;
-  height: 841mm;
   font-family: 'Manrope', sans-serif;
   font-weight: 500;
   color: var(--cyprus);
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
+  background: #1c1c1c;
+  overflow-x: hidden;
+}
+
+/* On screen: the poster is authored at true print size (1189mm) and JS
+   zooms it to fit the viewport width. In print, the zoom is reset so the
+   physical page prints at true size. */
+.page-outer { width: 1189mm; height: 841mm; transform-origin: top left; }
+@media print {
+  html, body { background: none; }
+  .page-outer { zoom: 1 !important; }
 }
 
 .sora { font-family: 'Sora', sans-serif; font-weight: 600; }
@@ -170,6 +179,7 @@ html, body {
 </style>
 </head>
 <body>
+<div class="page-outer">
 <div class="page">
 
   <!-- TOP BAND -->
@@ -340,5 +350,21 @@ html, body {
 
   </div>
 </div>
+</div>
+<script>
+(function () {
+  var outer = document.querySelector('.page-outer');
+  var baseWidth = null;
+  function fit() {
+    if (baseWidth === null) {
+      outer.style.zoom = 1;
+      baseWidth = outer.getBoundingClientRect().width;
+    }
+    outer.style.zoom = window.innerWidth / baseWidth;
+  }
+  window.addEventListener('resize', fit);
+  fit();
+})();
+</script>
 </body>
 </html>
